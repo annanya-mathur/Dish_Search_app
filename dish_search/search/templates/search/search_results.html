@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dish Search Results</title>
+    <style>
+        /* Example CSS styling for the header, footer, and animations */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            margin-top: auto;
+        }
+        .navbar {
+            background-color: #f2f2f2;
+            padding: 10px;
+            animation: fadein 1s;
+        }
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .navbar li {
+            float: left;
+            margin-right: 10px;
+        }
+        .navbar li a {
+            display: block;
+            color: #333;
+            text-align: center;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+        .navbar li a:hover {
+            background-color: #ddd;
+        }
+        @keyframes fadein {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dish Search App</h1>
+    </header>
+    <div class="navbar">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <h2>Dish Search Results</h2>
+        <form method="GET">
+            <input type="text" name="q" value="{{ request.GET.q }}">
+            <button type="submit">Search</button>
+        </form>
+        {% if results %}
+            <ul>
+            {% for dish in results %}
+                <li>{{ dish.name }}</li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No results found.</p>
+        {% endif %}
+    </div>
+    <footer>
+        &copy; 2023 Dish Search App. All rights reserved.
+    </footer>
+</body>
+</html>
